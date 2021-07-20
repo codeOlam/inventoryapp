@@ -1,0 +1,18 @@
+type Category @model {
+  id: ID!
+  name: String!
+  products: [Product] @connection(keyName: "byCategory", fields: ["id"])
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Product @model @key(name: "byCategory", fields: ["categoryID"]) {
+  id: ID!
+  name: String!
+  categoryID: ID!
+  price: Float!
+  inStock: Boolean
+  category: Category @connection(fields: ["categoryID"])
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
