@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Dash from './components/Dash';
+import Router from './components/Routes';
 import reportWebVitals from './reportWebVitals';
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+
+Amplify.configure(config)
 
 ReactDOM.render(
   <React.StrictMode>
-    <Dash />
+    <Router />
   </React.StrictMode>,
   document.getElementById('root')
 );
