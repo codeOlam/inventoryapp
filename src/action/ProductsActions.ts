@@ -10,7 +10,7 @@ export interface Product {
     category?: string;
 }
 
-function mapListProductQuery(
+function mapListProductsQuery(
     listProductsQuery: GraphQLResult<ListProductsQuery>
     ): Product[] {
         return listProductsQuery.data?.listProducts?.items?.map(
@@ -25,4 +25,4 @@ function mapListProductQuery(
         ) || []
 }
 
-export default mapListProductQuery
+export default mapListProductsQuery
