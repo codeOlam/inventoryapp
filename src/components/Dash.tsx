@@ -7,7 +7,6 @@ import Products from './Products';
 function Dash() {
   return (
     <div className="Dash">
-      <h1>Home Page Coming Through</h1>
         <Products />
     </div>
   );
