@@ -1,4 +1,5 @@
 import React from 'react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import './Dash.css';
 
 function Dash() {
@@ -9,4 +10,4 @@ function Dash() {
   );
 }
 
-export default Dash;
+export default withAuthenticator(Dash);
