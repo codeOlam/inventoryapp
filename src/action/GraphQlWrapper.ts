@@ -7,13 +7,13 @@ export interface GraphQLOptions {
     authMode?: GRAPHQL_AUTH_MODE;
 }
 
-async function queryGraphQL<X>(
-    query: any, 
+async function actionGraphQL<X>(
+    action: any, 
     options?: GraphQLOptions): Promise<GraphQLResult<X>>{
         return (
-            await API.graphql(graphqlOperation(query, options))
+            await API.graphql(graphqlOperation(action, options))
             ) as GraphQLResult<X>
     }
 
 
-export default queryGraphQL
+export default actionGraphQL

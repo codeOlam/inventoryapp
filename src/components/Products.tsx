@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { listProducts } from "../graphql/queries";
 import { ListProductsQuery } from "../API";
-import queryGraphQL from "../action/GraphQlWrapper";
+import actionGraphQL from "../action/GraphQlWrapper";
 import mapListProductsQuery, {Product} from "../action/ProductsActions";
 
 function Products(){
@@ -10,7 +10,7 @@ function Products(){
 
     async function getProducts() {
         try{
-            const prodData = await queryGraphQL<ListProductsQuery>(listProducts);
+            const prodData = await actionGraphQL<ListProductsQuery>(listProducts);
             const products = mapListProductsQuery(prodData);
             setLoading(false);
             setProducts(products);

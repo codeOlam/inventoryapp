@@ -8,6 +8,8 @@ function Dash() {
   return (
     <div className="Dash">
         <Products />
+        <hr/>
+        <AmplifySignOut />
     </div>
   );
 }
