@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Router from './components/Routes';
 import reportWebVitals from './reportWebVitals';
 import Amplify from 'aws-amplify';

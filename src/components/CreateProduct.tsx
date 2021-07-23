@@ -47,19 +47,14 @@ const CreateProduct = () => {
             const product = mapOnCreateProductSubscription(createProducSubscription);
             setProducts([...products, product]);
         };
-    
-    function sub(){
+
+    useEffect(() => {
         const subscription = subGraphQL<OnCreateProductSubscription>(
             onCreateProduct,
             onCreateProductHandler
         );
-
-        return subscription.unsubscribe();
-    }
-
-    useEffect(() => {
-        sub()
-    },[products])
+        return () => subscription.unsubscribe();
+    },[products]);
 
     return (
         <form onSubmit={submit}>
