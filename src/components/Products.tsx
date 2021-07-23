@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { listProducts } from "../graphql/queries";
-import { ListProductsQuery } from "../API";
+import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
-import mapListProductsQuery, {Product} from "../action/ProductsActions";
+import  {mapListProductsQuery, Product} from "../action/ProductsActions";
+import CreateProduct from "./CreateProduct";
 
 function Products(){
     const [products, setProducts] = useState<Product[]>([]);
@@ -38,6 +39,8 @@ function Products(){
                     </div>
                 ))
             }
+            <h3>Add New Product</h3>
+            <CreateProduct />
         </div>
 
     )
