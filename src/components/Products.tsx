@@ -21,6 +21,7 @@ function Products(){
             const products = mapListProductsQuery(prodData);
             setLoading(false);
             setProducts(products);
+            console.log('products: ', products)
         }catch(error){
             console.log("Error Querying Products: ", error);
         }

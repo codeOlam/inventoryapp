@@ -1,14 +1,18 @@
-import React, { useState, FormEvent, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import actionGraphQL, { subGraphQL } from "../action/GraphQlWrapper";
 import { createProduct } from "../graphql/mutations";
+import { ListCategoriesQuery } from "../API";
 import { CreateProductMutation, CreateProductMutationVariables, OnCreateProductSubscription } from "../API";
 import { mapOnCreateProductSubscription, Product } from "../action/ProductsActions";
+import {mapListCategoriesQuery, Category} from "../action/CategoriesActions";
 import { onCreateProduct } from "../graphql/subscriptions";
-import { Button, Modal, Form, Input, Radio, Switch } from 'antd';
+import { Button, Modal, Form, Input, Select, Switch } from 'antd';
+import { listCategories } from "../graphql/queries";
 
 
 const CreateProduct = () => {
-    const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Product[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
 
     const [visible, setVisible] = useState(false);
 
@@ -63,6 +67,23 @@ const CreateProduct = () => {
         return () => subscription.unsubscribe();
     },[products]);
 
+    async function getCat(){
+      try{
+        const catData = await actionGraphQL<ListCategoriesQuery>(listCategories);
+        const categories = mapListCategoriesQuery(catData);
+        setCategories(categories)
+        console.log('Category from create Prod: ', categories);
+        return categories
+      } catch(error){
+        console.log('Error getting Categories: ', error);
+      }
+    }
+    useEffect(() =>{
+      getCat()
+    },[])
+    const cat = categories;
+    console.log('category below hook state: ', cat);
+
     const ProductCreateForm = ({ visible, onCreate, onCancel }: any) => {
         const [form] = Form.useForm();
 
@@ -107,10 +128,21 @@ const CreateProduct = () => {
                 <Input />
               </Form.Item>
               <Form.Item 
-                id="categoryID"
+                id="categoryID" 
                 name="categoryID" 
-                label="Product Category">
-                <Input />
+                label="Select Category">
+                <Select>
+                  {
+                    cat?.map(option => (
+                      <Select.Option
+                        key={option.id}
+                        value={option.id}
+                      >
+                        {option.name}
+                    </Select.Option>
+                    ))
+                  } 
+                </Select>
               </Form.Item>
               <Form.Item 
                 id="price"
