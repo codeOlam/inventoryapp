@@ -5,6 +5,7 @@ import {
     PieChartOutlined,
     FolderOutlined
   } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -24,10 +25,12 @@ function SiderNav (){
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Dashboard
+              <Link to={`/`}> Dashboard </Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<ShoppingOutlined />} title="Products">
-              <Menu.Item key="3">All Products</Menu.Item>
+              <Menu.Item key="3">
+                <Link to={`/allproducts`}>All Products </Link>
+              </Menu.Item>
               <Menu.Item key="4">Sold Products</Menu.Item>
               <Menu.Item key="5">Available Products</Menu.Item>
             </SubMenu>

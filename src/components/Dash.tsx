@@ -1,6 +1,5 @@
 import React from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import './Dash.css';
 import Products from './Products';
 import 'antd/dist/antd.css';
 import './index.css';
