@@ -7,8 +7,6 @@ import './index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { 
   UserOutlined, 
-  VideoCameraOutlined,
-  UploadOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined
 } from '@ant-design/icons';

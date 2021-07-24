@@ -5,7 +5,6 @@ import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "./CreateProduct";
-import { Category } from "../models";
 
 function Products(){
     const [products, setProducts] = useState<Product[]>([]);

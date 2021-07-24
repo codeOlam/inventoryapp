@@ -1,6 +1,5 @@
 import { ListProductsQuery, OnCreateProductSubscription } from "../API";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
-import { Category } from "../models";
 
 export interface Product {
     id: string;
