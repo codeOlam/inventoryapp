@@ -1,5 +1,6 @@
 import { ListProductsQuery, OnCreateProductSubscription } from "../API";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
+import { Category } from "../models";
 
 export interface Product {
     id: string;
@@ -7,6 +8,7 @@ export interface Product {
     categoryID: string;
     price: number;
     inStock: boolean;
+    category: any;
 }
 
 function mapListProductsQuery(
@@ -18,7 +20,8 @@ function mapListProductsQuery(
                 name: product?.name,
                 categoryID: product?.categoryID,
                 price: product?.price,
-                inStock: product?.inStock
+                inStock: product?.inStock,
+                category: product?.category
             } as Product)
         ) || []
 }
@@ -30,7 +33,8 @@ function mapOnCreateProductSubscription(
             name, 
             categoryID, 
             price, 
-            inStock, } = createProductSubscription.onCreateProduct || {};
+            inStock,
+            category } = createProductSubscription.onCreateProduct || {};
 
         return {
             id,
@@ -38,6 +42,7 @@ function mapOnCreateProductSubscription(
             categoryID,
             price,
             inStock,
+            category
         } as Product
     }
 
