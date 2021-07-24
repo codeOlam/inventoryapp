@@ -9,10 +9,6 @@ import { Button, Modal, Form, Input, Radio, Switch } from 'antd';
 
 const CreateProduct = () => {
     const [products, setProducts] = useState<Product[]>([])
-    const [name, setName] = useState<string>('');
-    const [categoryID, setCategoryID] = useState<string>('');
-    const [price, setPrice] = useState<number>(0.00);
-    const [inStock, setInStock] = useState<boolean>(true);
 
     const [visible, setVisible] = useState(false);
 
@@ -29,10 +25,6 @@ const CreateProduct = () => {
                 values.categoryID as string, 
                 values.price as number, 
                 values.inStock as boolean);
-            setName("");
-            setCategoryID("");
-            setPrice(0.00);
-            setInStock(true);
             
             setVisible(false);
         } catch(error){
@@ -73,6 +65,7 @@ const CreateProduct = () => {
 
     const ProductCreateForm = ({ visible, onCreate, onCancel }: any) => {
         const [form] = Form.useForm();
+
         return (
           <Modal
             visible={visible}
@@ -126,18 +119,15 @@ const CreateProduct = () => {
                 <Input 
                  />
               </Form.Item>
-              <Form.Item id="inStock" name="inStock" className="collection-create-form_last-form-item">
-                <Radio.Group>
-                  <Radio value='true'>inStock</Radio>
-                  <Radio value='false'>Not Yet inStock</Radio>
-                </Radio.Group>
-              </Form.Item>
-              {/* <Form.Item id="inStock" 
+              <Form.Item 
+                id="inStock" 
                 name="inStock" 
-                label="In Stock?" 
+                label="In Stock?"
+                initialValue="false"
                 valuePropName="true">
-                <Switch />
-            </Form.Item> */}
+                <Switch 
+                />
+            </Form.Item>
             </Form>
           </Modal>
         );
