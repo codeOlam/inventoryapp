@@ -6,7 +6,6 @@ import Dash from './Dash';
 import SiderNav from '../menu/Sider';
 import HeaderMenu from '../menu/HeaderMenu';
 import Products from './Products';
-import { Product } from '../models';
 
 function Router () {
 

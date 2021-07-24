@@ -5,7 +5,7 @@ import { listProducts } from "../graphql/queries";
 import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
-import CreateProduct from "./CreateProduct";
+import CreateProduct from "../forms/CreateProduct";
 import { Layout, Breadcrumb } from 'antd';
 
 
