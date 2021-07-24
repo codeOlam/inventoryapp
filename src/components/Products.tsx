@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { Table } from "antd";
+import { Link } from "react-router-dom";
 import { listProducts } from "../graphql/queries";
 import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "./CreateProduct";
+import { Layout, Breadcrumb } from 'antd';
+
+
+const { Content } = Layout;
 
 function Products(){
     const [products, setProducts] = useState<Product[]>([]);
@@ -46,7 +51,20 @@ function Products(){
     }))
 
     return(
-        <div> 
+        <> 
+          <Breadcrumb style={{ margin: '20px 16px' }}>
+            <Breadcrumb.Item>
+                <Link to={`/`}>DashBoard </Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>All Products</Breadcrumb.Item>
+          </Breadcrumb>
+          <Content
+            className="site-layout-background"
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+            }}
+          >
             <h1>All Products</h1>
             <CreateProduct />
             {loading && <h2>Loading...</h2>}
@@ -60,7 +78,8 @@ function Products(){
                 columns={columns}
                 dataSource={data}
             />
-        </div>
+            </Content>
+        </>
 
     )
 }
