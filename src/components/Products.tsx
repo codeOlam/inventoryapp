@@ -5,8 +5,9 @@ import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "../forms/CreateProduct";
-import { Layout, Breadcrumb, Table, Tag } from 'antd';
+import { Layout, Breadcrumb, Table, Tag, Popconfirm, Popover } from 'antd';
 import { withAuthenticator } from "@aws-amplify/ui-react";
+import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 
 
 const { Content } = Layout;
@@ -53,7 +54,12 @@ function Products(){
             title: 'Actions', 
             dataIndex: '', 
             key: 'x', 
-            render: () =><><a>Delete</a> <a>Update</a></>
+            render: () =><>
+            <Popconfirm title="Confirm item removal?" ><a><DeleteTwoTone /></a></Popconfirm>
+            <a> <Popover content="Update item status">
+                <EditTwoTone />
+                </Popover> </a>
+            </>
         },
     ];
 
@@ -81,15 +87,12 @@ function Products(){
           >
             <h1>All Products</h1>
             <CreateProduct />
-            {loading && <h2>Loading...</h2>}
-            {
-                 products?.map(product => ( 
-                    console.log("product: ", product),
-                    console.log('category object: ', product.category.name)
-                ))
-            }
+            {loading && <h2>Loading...</h2>}    
             <Table 
                 columns={columns}
+                expandable={{
+                    expandedRowRender: record => <p style={{ margin: 0 }}>{record.category}</p>
+                  }}
                 dataSource={data}
             />
             </Content>
