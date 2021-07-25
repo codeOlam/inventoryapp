@@ -6,6 +6,7 @@ import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "../forms/CreateProduct";
 import { Layout, Breadcrumb, Table, Tag } from 'antd';
+import { withAuthenticator } from "@aws-amplify/ui-react";
 
 
 const { Content } = Layout;
@@ -97,4 +98,4 @@ function Products(){
     )
 }
 
-export default Products
+export default withAuthenticator(Products)
