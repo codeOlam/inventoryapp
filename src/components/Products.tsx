@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { Table } from "antd";
 import { Link } from "react-router-dom";
 import { listProducts } from "../graphql/queries";
 import { ListProductsQuery} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "../forms/CreateProduct";
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, Table, Tag } from 'antd';
 
 
 const { Content } = Layout;
@@ -34,7 +33,20 @@ function Products(){
     const columns = [
         {title: 'Name', dataIndex: 'name', key: 'name'},
         {title: 'Price($)', dataIndex: 'price', key: 'price'},
-        {title: 'is Available?', dataIndex: 'inStock', key: 'inStock'},
+        {
+            title: 'is Available?', 
+            dataIndex: 'inStock', 
+            key: 'inStock',
+            render: (inStock: boolean) =>(
+                <>
+                    {
+                        inStock ? 
+                            <Tag color="green" > In Stock </Tag> : 
+                            <Tag color="volcano">Out of Stock</Tag> 
+                    }
+                </>
+            )
+        },
         {title: 'Category', dataIndex: 'category', key: 'category'},
         {
             title: 'Actions', 

@@ -67,6 +67,7 @@ const CreateProduct = () => {
         return () => subscription.unsubscribe();
     },[products]);
 
+    
     async function getCat(){
       try{
         const catData = await actionGraphQL<ListCategoriesQuery>(listCategories);
@@ -78,11 +79,12 @@ const CreateProduct = () => {
         console.log('Error getting Categories: ', error);
       }
     }
+
     useEffect(() =>{
       getCat()
     },[])
+
     const cat = categories;
-    console.log('category below hook state: ', cat);
 
     const ProductCreateForm = ({ visible, onCreate, onCancel }: any) => {
         const [form] = Form.useForm();
