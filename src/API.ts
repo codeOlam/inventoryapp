@@ -7,7 +7,6 @@ export type CreateCategoryInput = {
   name: string,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
 };
 
 export type ModelCategoryConditionInput = {
@@ -66,16 +65,12 @@ export type Category = {
   products?: ModelProductConnection | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type ModelProductConnection = {
   __typename: "ModelProductConnection",
   items?:  Array<Product | null > | null,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type Product = {
@@ -88,9 +83,6 @@ export type Product = {
   category?: Category | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateCategoryInput = {
@@ -98,12 +90,10 @@ export type UpdateCategoryInput = {
   name?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteCategoryInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateProductInput = {
@@ -114,7 +104,6 @@ export type CreateProductInput = {
   inStock?: boolean | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
 };
 
 export type ModelProductConditionInput = {
@@ -172,12 +161,10 @@ export type UpdateProductInput = {
   inStock?: boolean | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteProductInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type ModelCategoryFilterInput = {
@@ -194,7 +181,6 @@ export type ModelCategoryConnection = {
   __typename: "ModelCategoryConnection",
   items?:  Array<Category | null > | null,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelProductFilterInput = {
@@ -231,18 +217,11 @@ export type CreateCategoryMutation = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -267,18 +246,11 @@ export type UpdateCategoryMutation = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -303,18 +275,11 @@ export type DeleteCategoryMutation = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -338,19 +303,12 @@ export type CreateProductMutation = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -374,19 +332,12 @@ export type UpdateProductMutation = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -410,49 +361,12 @@ export type DeleteProductMutation = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type SyncCategoriesQueryVariables = {
-  filter?: ModelCategoryFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncCategoriesQuery = {
-  syncCategories?:  {
-    __typename: "ModelCategoryConnection",
-    items?:  Array< {
-      __typename: "Category",
-      id: string,
-      name: string,
-      products?:  {
-        __typename: "ModelProductConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt?: string | null,
-      updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null > | null,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -476,18 +390,11 @@ export type GetCategoryQuery = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -507,54 +414,11 @@ export type ListCategoriesQuery = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null > | null,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncProductsQueryVariables = {
-  filter?: ModelProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProductsQuery = {
-  syncProducts?:  {
-    __typename: "ModelProductConnection",
-    items?:  Array< {
-      __typename: "Product",
-      id: string,
-      name: string,
-      categoryID: string,
-      price: number,
-      inStock?: boolean | null,
-      category?:  {
-        __typename: "Category",
-        id: string,
-        name: string,
-        createdAt?: string | null,
-        updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null,
-      createdAt?: string | null,
-      updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null > | null,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -577,19 +441,12 @@ export type GetProductQuery = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -615,18 +472,11 @@ export type ListProductsQuery = {
         name: string,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null > | null,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -646,18 +496,11 @@ export type OnCreateCategorySubscription = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -677,18 +520,11 @@ export type OnUpdateCategorySubscription = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -708,18 +544,11 @@ export type OnDeleteCategorySubscription = {
         inStock?: boolean | null,
         createdAt?: string | null,
         updatedAt?: string | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
       } | null > | null,
       nextToken?: string | null,
-      startedAt?: number | null,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -738,19 +567,12 @@ export type OnCreateProductSubscription = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -769,19 +591,12 @@ export type OnUpdateProductSubscription = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -800,18 +615,11 @@ export type OnDeleteProductSubscription = {
       products?:  {
         __typename: "ModelProductConnection",
         nextToken?: string | null,
-        startedAt?: number | null,
       } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
