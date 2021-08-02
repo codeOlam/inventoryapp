@@ -10,11 +10,27 @@ import { Button, Modal, Form, Input, Select, Switch } from 'antd';
 import { listCategories } from "../graphql/queries";
 
 
-const CreateProduct = () => {
+function CreateProduct() {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
-
     const [visible, setVisible] = useState(false);
+
+    async function addProduct(
+        name: string, 
+        categoryID: string,
+        price: number,
+        inStock: boolean){
+            try{
+                const response = await actionGraphQL<CreateProductMutation>(
+                    createProduct, {
+                        input: { name, categoryID, price, inStock},
+                    } as CreateProductMutationVariables
+                );
+                console.log('Product Added Response: ', response);
+            } catch(error){
+                console.log("Error Adding Product: ", error);
+            }
+    };
 
     const onCreate = (values: any) => {
       console.log('Received values of form: ', values);
@@ -36,22 +52,7 @@ const CreateProduct = () => {
         }
     };
 
-    async function addProduct(
-        name: string, 
-        categoryID: string,
-        price: number,
-        inStock: boolean){
-            try{
-                const response = await actionGraphQL<CreateProductMutation>(
-                    createProduct, {
-                        input: { name, categoryID, price, inStock},
-                    } as CreateProductMutationVariables
-                );
-                console.log('Product Added Response: ', response);
-            } catch(error){
-                console.log("Error Adding Product: ", error);
-            }
-        };
+
 
     function onCreateProductHandler(
         createProducSubscription: OnCreateProductSubscription ){
@@ -175,7 +176,7 @@ const CreateProduct = () => {
               setVisible(true);
             }}
           >
-            New Collection
+            Add Product
           </Button>
           <ProductCreateForm
             visible={visible}

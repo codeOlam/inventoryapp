@@ -7,7 +7,7 @@ export interface Product {
     categoryID: string;
     price: number;
     inStock: boolean;
-    category: any;
+    category?: any;
 }
 
 function mapListProductsQuery(

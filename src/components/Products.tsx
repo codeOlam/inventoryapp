@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { listProducts } from "../graphql/queries";
-import { ListProductsQuery} from "../API";
+import { deleteProduct } from "../graphql/mutations";
+import { 
+    ListProductsQuery, 
+    DeleteProductMutation, 
+    DeleteProductMutationVariables} from "../API";
 import actionGraphQL from "../action/GraphQlWrapper";
 import  {mapListProductsQuery, Product} from "../action/ProductsActions";
 import CreateProduct from "../forms/CreateProduct";
-import { Layout, Breadcrumb, Table, Tag, Popconfirm, Popover } from 'antd';
+import { Layout, Breadcrumb, Table, Tag, Spin, Popconfirm, Popover } from 'antd';
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
+import { DeleteTwoTone } from "@ant-design/icons";
+import UpdateProduct from "../forms/UpdateProduct";
 
 
 const { Content } = Layout;
@@ -55,13 +60,15 @@ function Products(){
             dataIndex: '', 
             key: 'x', 
             render: () =><>
-            <Popconfirm title="Confirm item removal?" ><a><DeleteTwoTone /></a></Popconfirm>
-            <a> <Popover content="Update item status">
-                <EditTwoTone />
-                </Popover> </a>
+            <Popconfirm title="Confirm item removal?" ><a onClick={() =>products.filter(product => product.id !== product.id)}><DeleteTwoTone /></a></Popconfirm>
+            <Popover content="Update item status"> <UpdateProduct/></Popover>
+            {/* <Popover content="Update item status"><a> <EditableTable /></a></Popover> */}
+            {/* <EditableTable /> */}
             </>
         },
     ];
+
+
 
     const data = products?.map(row => ({
         name: row.name,
@@ -69,6 +76,19 @@ function Products(){
         inStock: row.inStock,
         category: row.category.name
     }))
+
+    async function deleteProduct(id: string){
+        const productsList = products.filter(product => product.id !== id)
+        setProducts(productsList);
+        try{
+           const response = await actionGraphQL<DeleteProductMutation>(
+               deleteProduct, {input: {id}} as DeleteProductMutationVariables ) 
+               console.log('Product successfully deleted: ', response)
+        } catch(error){
+            console.log('Error Deleting Product record: ', error);
+        }
+        
+    }
 
     return(
         <> 
@@ -86,13 +106,10 @@ function Products(){
             }}
           >
             <h1>All Products</h1>
-            <CreateProduct />
-            {loading && <h2>Loading...</h2>}    
-            <Table 
+            <CreateProduct /><br/>
+            {loading && <Spin tip='loading...' size='large'/>}    
+            <Table
                 columns={columns}
-                expandable={{
-                    expandedRowRender: record => <p style={{ margin: 0 }}>{record.category}</p>
-                  }}
                 dataSource={data}
             />
             </Content>
